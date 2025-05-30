@@ -8,7 +8,7 @@ from . import getsleepy as getsleepy
 
 from .config import Config
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __plugin_meta__ = PluginMetadata(
     name="AreYouSleepy",
     description="基于 sleepy-project/sleepy 项目的状态查询插件！",
