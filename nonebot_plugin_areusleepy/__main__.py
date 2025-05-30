@@ -3,7 +3,6 @@ from nonebot.matcher import Matcher
 from nonebot.params import CommandArg
 from nonebot.adapters import Event as BaseEvent, Message
 from nonebot import get_plugin_config, get_bot
-from nonebot_plugin_apscheduler import scheduler
 
 import httpx
 

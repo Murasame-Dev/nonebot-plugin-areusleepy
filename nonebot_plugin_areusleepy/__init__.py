@@ -1,18 +1,20 @@
 from nonebot import get_plugin_config
-from nonebot.plugin import PluginMetadata
+from nonebot.plugin import PluginMetadata, inherit_supported_adapters, require
+
+require("nonebot_plugin_alconna")
 
 from . import __main__ as __main__
 from . import getsleepy as getsleepy
 
-from nonebot_plugin_apscheduler import scheduler
 from .config import Config
 
+__version__ = "0.0.1"
 __plugin_meta__ = PluginMetadata(
     name="AreYouSleepy",
     description="基于 sleepy-project/sleepy 项目的状态查询插件！",
     usage="/areusleepy /getsleepy url",
     type="application",
-    homepage="",
+    homepage="https://github.com/Murasame-Dev/nonebot-plugin-areusleepy",
     supported_adapters=inherit_supported_adapters("nonebot_plugin_alconna"),
     config=Config,
 )

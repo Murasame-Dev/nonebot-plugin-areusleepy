@@ -1,15 +1,19 @@
 [project]
-name = "nonebot-plugin-example"
+name = "nonebot-plugin-areusleepy"
 dynamic = ["version"]
-description = "Template plugin project"
+description = "Let bot look!!!"
 authors = [{ name = "Murasame", email = "congyu@sbhfy.cn" }]
-dependencies = ["nonebot2>=2.4.1", "nonebot-plugin-alconna>=0.54.2"]
 requires-python = ">=3.9,<4.0"
 readme = "README.md"
 license = { text = "MIT" }
+dependencies = [
+    "nonebot2>=2.4.1",
+    "nonebot-plugin-alconna>=0.54.2",
+    "httpx>=0.28.1",
+]
 
 [project.urls]
-homepage = "https://github.com/LeiSureLyYrsc/nonebot-plugin-template"
+homepage = "https://github.com/Murasame-Dev/nonebot-plugin-areusleepy"
 
 [dependency-groups]
 dev = []
@@ -23,4 +27,4 @@ includes = []
 
 [tool.pdm.version]
 source = "file"
-path = "nonebot_plugin_example/__init__.py"
+path = "nonebot_plugin_areusleepy/__init__.py"

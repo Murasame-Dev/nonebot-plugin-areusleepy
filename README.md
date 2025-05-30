@@ -14,51 +14,16 @@
 
 _✨基于 [sleepy-project/sleepy](https://github.com/sleepy-project/sleepy) 项目的状态查询插件！ ✨_
 
-<img src="https://img.shields.io/badge/python-3.9+-blue.svg" alt="python">
-<a href="https://pdm.fming.dev">
-  <img src="https://img.shields.io/badge/pdm-managed-blueviolet" alt="pdm-managed">
-</a>
-<a href="https://wakatime.com/badge/user/b61b0f9a-f40b-4c82-bc51-0a75c67bfccf/project/f4778875-45a4-4688-8e1b-b8c844440abb">
-  <img src="https://wakatime.com/badge/user/b61b0f9a-f40b-4c82-bc51-0a75c67bfccf/project/f4778875-45a4-4688-8e1b-b8c844440abb.svg" alt="wakatime">
-</a>
-
-<br />
-
-<!-- <a href="https://pydantic.dev">
-  <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v1.json" alt="Pydantic Version 1" >
-</a> -->
-
-<!-- <a href="https://pydantic.dev">
-  <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json" alt="Pydantic Version 2" >
-</a> -->
-
-<a href="https://pydantic.dev">
-  <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/lgc-NB2Dev/readme/main/template/pyd-v1-or-v2.json" alt="Pydantic Version 1 Or 2" >
-</a>
-<a href="./LICENSE">
-  <img src="https://img.shields.io/github/license/lgc-NB2Dev/nonebot-plugin-example.svg" alt="license">
-</a>
-<a href="https://pypi.python.org/pypi/nonebot-plugin-example">
-  <img src="https://img.shields.io/pypi/v/nonebot-plugin-example.svg" alt="pypi">
-</a>
-<a href="https://pypi.python.org/pypi/nonebot-plugin-example">
-  <img src="https://img.shields.io/pypi/dm/nonebot-plugin-example" alt="pypi download">
-</a>
-
-<br />
-
-<a href="https://registry.nonebot.dev/plugin/nonebot-plugin-example:nonebot_plugin_example">
-  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnbbdg.lgc2333.top%2Fplugin%2Fnonebot-plugin-example" alt="NoneBot Registry">
-</a>
-<a href="https://registry.nonebot.dev/plugin/nonebot-plugin-example:nonebot_plugin_example">
-  <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnbbdg.lgc2333.top%2Fplugin-adapters%2Fnonebot-plugin-example" alt="Supported Adapters">
-</a>
+[![python3](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 </div>
 
 ## 📖 介绍
 
 此插件可以发送在 [sleepy-project/sleepy](https://github.com/sleepy-project/sleepy) 目前的状态信息，可以显示用户的设备是否在使用中，正在听的歌曲(支持情况以 sleepy 项目为准)，支持多设备状态列表
+
+
 
 ## 💿 安装
 
@@ -158,7 +123,7 @@ url 可填写为任意地址，**但需要注意http://或https://**
 ## 📞 联系
 
 TG群组：[点此加入](https://t.me/LoveMurasame)   
-吹水群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)   
+QQ群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)   
 邮箱：<congyu@sbhfy.cn>   
 
 ## 💡 鸣谢
