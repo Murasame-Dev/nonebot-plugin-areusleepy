@@ -2,14 +2,22 @@
 name = "nonebot-plugin-areusleepy"
 dynamic = ["version"]
 description = "Let bot look!!!"
-authors = [{ name = "Murasame", email = "congyu@sbhfy.cn" }]
+authors = [
+    { name = "Murasame", email = "congyu@sbhfy.cn" },
+    { name = "wyf9", email = "wyf9@wyf9.top" },
+]
 requires-python = ">=3.9,<4.0"
 readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
-    "nonebot2>=2.4.1",
-    "nonebot-plugin-alconna>=0.54.2",
-    "httpx>=0.28.1",
+    "nonebot2>=2.0.0",
+    "nonebot-plugin-apscheduler>=0.3.0",
+    "nonebot-plugin-alconna>=0.12.0",
+    "nonebot2[httpx]>=2.4.2",
+    "nonebot2[fastapi]>=2.4.2",
+    "nonebot2[websockets]>=2.4.2",
+    "nonebot_adapter_onebot>=2.4.6",
+    "requests>=2.32.3",
 ]
 
 [project.urls]

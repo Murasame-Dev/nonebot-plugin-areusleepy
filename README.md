@@ -21,13 +21,11 @@ _✨基于 [sleepy-project/sleepy](https://github.com/sleepy-project/sleepy) 项
 
 ## 📖 介绍
 
-此插件可以发送在 [sleepy-project/sleepy](https://github.com/sleepy-project/sleepy) 目前的状态信息，可以显示用户的设备是否在使用中，正在听的歌曲(支持情况以 sleepy 项目为准)，支持多设备状态列表
-
-
+此插件可以发送在 [sleepy-project/sleepy](https://github.com/sleepy-project/sleepy) 目前的状态信息，可以显示用户的设备是否在使用中，正在听的歌曲 (支持情况以 sleepy 项目为准)，支持多设备状态列表
 
 ## 💿 安装
 
-以下提到的方法 任选**其一** 即可
+以下提到的方法 任选**其一**即可
 
 <details open>
 <summary>[推荐] 使用 nb-cli 安装</summary>
@@ -98,23 +96,35 @@ plugins = [
 
 ## ⚙️ 配置
 
-#### `sleepyurl` - /getsleepy 使用的默认地址
+配置示例:
 
-默认: "http://127.0.0.1:9010"
+```ini
+# OneBot 服务配置
+# 正向 / 反向 WebSocket 只需要启用其中的一个, 禁用项在行前加 # 注释
+DRIVER=~fastapi+~httpx+~websockets     # 驱动器 (无需更改)
+ONEBOT_WS_URLS=["ws://127.0.0.1:2333"] # 正向 WebSocket
+#PORT=52014                             # 反向 WebSocket
+#ONEBOT_ACCESS_TOKEN=""                 # 访问令牌, 可选
 
-****必须要有http://或https://****
+# 基本配置
+sleepy_command="sleepy"    # 触发命令
+sleepy_prompt_loading=true # 是否显示 "正在获取, 请稍候"
+sleepy_show_details=false  # 是否显示详细信息 (状态的 id, 设备的 id, 最后更新时间的时区)
+
+# Sleepy 服务配置
+sleepy_url="https://status.0d000721.xin" # Sleepy 服务地址, 必须以 http:// 或 https:// 开头, 不以 / 结尾
+sleepy_timeout=5.0                       # 请求超时 (秒)
+sleepy_retries=3                         # 重试次数
+```
 
 ## 🎉 使用
 
-### 指令表
+用法:
 
-#### `areusleepy` - 查询默认配置的状态信息
-
-查询配置文件内的网站信息并输出
-
-#### `getsleepy url` - 查询其他站点的状态信息
-
-url 可填写为任意地址，**但需要注意http://或https://**
+- `/sleepy` - 查询配置中网站的在线状态
+- `/sleepy [url]` - 查询其他网站的在线状态
+  * 如: `/sleepy https://sleepy.wyf9.top`
+  * **注意: `url` 必须以 `http://` 或 `https://` 开头**
 
 ### 效果图
 
@@ -122,13 +132,25 @@ url 可填写为任意地址，**但需要注意http://或https://**
 
 ## 📞 联系
 
-TG群组：[点此加入](https://t.me/LoveMurasame)   
-QQ群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)   
-邮箱：<congyu@sbhfy.cn>   
+### Sleepy 项目
+
+QQ 群组: [点此加群](https://siiway.top/t/qq)
+Discord: [点此加入服务器](https://siiway.top/t/dc)
+[更多联系方式](https://siiway.top/about/contact)
+
+> *人较多, 请注明来意*
+
+### 本项目
+
+TG群组：[点此加入](https://t.me/LoveMurasame)
+QQ群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)
+作者邮箱：<congyu@sbhfy.cn>
+
+> *大概率没人*
 
 ## 💡 鸣谢
 
-[sleepy-project/sleepy: Are you sleeping?](https://github.com/sleepy-project/sleepy) - 提供灵感，感谢开发者 [wyf9](https://github.com/wyf9) 的耐心指导
+本项目基于 [sleepy-project/sleepy: Are you sleeping?](https://github.com/sleepy-project/sleepy)
 
 ## 📝 更新日志
 
