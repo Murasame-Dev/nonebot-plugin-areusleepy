@@ -110,9 +110,9 @@ sleepy_timeout=5.0                       # 请求超时 (秒)
 sleepy_retries=3                         # 重试次数
 
 # sleepy 定时任务配置
-sleepy_scheduler_enabled: bool = False  # 是否启用定时任务
-sleepy_scheduler_cron: str = '0 9,21 * * *'  # Cron 表达式，默认每天 9:00 和 21:00
-sleepy_scheduler_groups: List[str] = []  # 推送的群组列表，默认为空，开启定时任务后必须配置此项
+sleepy_scheduler_enabled=False  # 是否启用定时任务
+sleepy_scheduler_cron="0 9,21 * * *"  # Cron 表达式，默认每天 9:00 和 21:00
+sleepy_scheduler_groups:""  # 推送的群组列表，默认为空，开启定时任务后必须配置此项
 ```
 
 ## 🎉 使用
