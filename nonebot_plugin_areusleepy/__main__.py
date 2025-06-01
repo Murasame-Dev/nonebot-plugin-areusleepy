@@ -8,6 +8,8 @@ from nonebot.params import CommandArg
 from nonebot.adapters import Event as BaseEvent, Message
 from nonebot import get_plugin_config, get_bot
 from nonebot_plugin_alconna.uniseg import UniMessage
+from nonebot_plugin_apscheduler import scheduler
+from nonebot.log import logger
 
 import requests
 from urllib.parse import urljoin
@@ -32,9 +34,10 @@ def get_data(base_url: str, retries: int = config.sleepy_retries) -> tuple[bool,
     '''
     success = False
     data = '未知错误'
+    query_url = urljoin(base_url, '/query?version=1')  # version=1 -> 为未来 (可能) 的 Sleepy /query API 修改提供兼容
+
     while retries > 0:
         try:
-            query_url = urljoin(base_url, '/query?version=1')  # version=1 -> 为未来 (可能) 的 Sleepy /query API 修改提供兼容
             resp: requests.Response = requests.get(
                 url=query_url,
                 timeout=config.sleepy_timeout,
@@ -84,17 +87,17 @@ def parse_data(url: str, data: dict) -> str:
             device: dict = raw_devices[i]
             devices.append(f'''
  - {device['show_name']}{f" ({i})" if config.sleepy_show_details else ""}
-   * 状态: {"✅" if device['using'] else "❌"}
+   * 状态: {"✅正在线上 Hi~ o(*￣▽￣*)ブ" if device['using'] else "❌离线 /(ㄒoㄒ)/~~"}
    * 应用: {slice_text(device['app_name'], status_slice)}
 '''[1:-1])
     ret = f'''
-🌐 网站: {url}
+👋你好 {url}
 
 👀 在线状态
 状态: {data['info']['name']}{f" ({data['status']})" if config.sleepy_show_details else ""}
 详细信息: {data['info']['desc']}
 
-📱 设备状态
+💻 设备状态
 {n.join(devices) if devices else '无'}
 
 ⏱ 最后更新: {data['last_updated']}{f" ({data['timezone']})" if config.sleepy_show_details else ""}
@@ -104,31 +107,95 @@ def parse_data(url: str, data: dict) -> str:
 # --- 定义命令
 
 
-ctx = on_command(
+rusleepy = on_command(
     cmd=config.sleepy_command
 )
 
 
-@ctx.handle()
+@rusleepy.handle()
 async def handle_status(msg: Message = CommandArg()):
     '''
     处理 /sleepy (默认) 命令
-    '''
-    # 获取参数
+    '''    # 获取参数
     query_url = msg.extract_plain_text().strip() or config.sleepy_url
-
+    
     # 提示获取中
     if config.sleepy_prompt_loading:
-        await ctx.send(f'正在从 {query_url} 获取状态, 请稍候...')
+        await rusleepy.send(f'正在从 {query_url} 获取状态, 请稍候...')
 
     success, data = get_data(query_url)
     if success:
         # 成功 -> 处理数据
         try:
-            parsed = parse_data(query_url, data)
+            # 确保 data 是 dict 类型
+            if isinstance(data, dict):
+                parsed = parse_data(query_url, data)
+            else:
+                parsed = f'数据格式错误: {data}'
         except Exception as e:
             parsed = f'处理状态信息失败: {e}'
-        await ctx.send(parsed)
+        await rusleepy.send(parsed)
     else:
         # 失败 -> 返回错误
-        await ctx.send(f'获取状态信息失败: {data}')
+        await rusleepy.send(f'获取状态信息失败: {data}')
+
+
+# --- 定时任务功能
+
+async def send_scheduled_status():
+    '''
+    定时发送状态信息
+    '''
+    if not config.sleepy_scheduler_enabled:
+        return
+    
+    # 获取状态数据
+    query_url = config.sleepy_url
+    success, data = get_data(query_url)
+    
+    if not success:
+        logger.error(f'定时任务获取状态失败: {data}')
+        return
+    
+    # 确保 data 是 dict 类型
+    if not isinstance(data, dict):
+        logger.error(f'定时任务获取到的数据格式错误: {data}')
+        return
+    
+    try:
+        parsed = parse_data(query_url, data)
+        message = f'📅 定时状态推送\n\n{parsed}'
+    except Exception as e:
+        logger.error(f'定时任务处理状态信息失败: {e}')
+        return
+    
+    # 获取机器人实例
+    try:
+        bot = get_bot()
+    except Exception as e:
+        logger.error(f'获取机器人实例失败: {e}')
+        return
+    
+    # 向配置的群组发送消息
+    for group_id in config.sleepy_scheduler_groups:
+        try:
+            await rusleepy.send(group_id=int(group_id), message=message)
+            logger.info(f'定时状态已发送到群组: {group_id}')
+        except Exception as e:
+            logger.error(f'向群组 {group_id} 发送定时状态失败: {e}')
+
+
+# 注册定时任务
+if config.sleepy_scheduler_enabled:
+    scheduler.add_job(
+        send_scheduled_status,
+        "cron",
+        id="sleepy_scheduled_status",
+        **{k: v for k, v in zip(
+            ["second", "minute", "hour", "day", "month", "day_of_week"],
+            config.sleepy_scheduler_cron.split()
+        ) if v != "*"},
+        misfire_grace_time=60,
+        replace_existing=True
+    )
+    logger.info(f'定时任务已启用，Cron 表达式: {config.sleepy_scheduler_cron}')

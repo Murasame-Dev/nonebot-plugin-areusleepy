@@ -96,25 +96,23 @@ plugins = [
 
 ## ⚙️ 配置
 
-配置示例:
+env 配置示例，变量后面为默认配置:
 
 ```ini
-# OneBot 服务配置
-# 正向 / 反向 WebSocket 只需要启用其中的一个, 禁用项在行前加 # 注释
-DRIVER=~fastapi+~httpx+~websockets     # 驱动器 (无需更改)
-ONEBOT_WS_URLS=["ws://127.0.0.1:2333"] # 正向 WebSocket
-#PORT=52014                             # 反向 WebSocket
-#ONEBOT_ACCESS_TOKEN=""                 # 访问令牌, 可选
-
 # 基本配置
-sleepy_command="sleepy"    # 触发命令
-sleepy_prompt_loading=true # 是否显示 "正在获取, 请稍候"
+sleepy_command="aresleepy"    # 触发命令
+sleepy_prompt_loading=true # 是否在发送消息前显示 "正在获取, 请稍候"
 sleepy_show_details=false  # 是否显示详细信息 (状态的 id, 设备的 id, 最后更新时间的时区)
 
 # Sleepy 服务配置
 sleepy_url="https://status.0d000721.xin" # Sleepy 服务地址, 必须以 http:// 或 https:// 开头, 不以 / 结尾
 sleepy_timeout=5.0                       # 请求超时 (秒)
 sleepy_retries=3                         # 重试次数
+
+# sleepy 定时任务配置
+sleepy_scheduler_enabled: bool = False  # 是否启用定时任务
+sleepy_scheduler_cron: str = '0 9,21 * * *'  # Cron 表达式，默认每天 9:00 和 21:00
+sleepy_scheduler_groups: List[str] = []  # 推送的群组列表，默认为空，开启定时任务后必须配置此项
 ```
 
 ## 🎉 使用
@@ -152,6 +150,16 @@ QQ群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)
 
 本项目基于 [sleepy-project/sleepy: Are you sleeping?](https://github.com/sleepy-project/sleepy)
 
+感谢 Sleepy 开发者 [wyf9](https://github.com/wyf9) 重构插件
+
 ## 📝 更新日志
 
-芝士刚刚发布的插件，还没有更新日志的说 qwq~
+### 0.1.0
+
+重构插件
+
+
+
+### 0.1.2
+
+添加了定时任务
