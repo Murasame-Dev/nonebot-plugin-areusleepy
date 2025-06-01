@@ -1,5 +1,7 @@
 from nonebot import get_plugin_config
-from nonebot.plugin import PluginMetadata, inherit_supported_adapters
+from nonebot.plugin import PluginMetadata, inherit_supported_adapters, require
+
+require("nonebot_plugin_alconna")
 
 from . import __main__ as __main__
 
