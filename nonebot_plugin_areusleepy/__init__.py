@@ -3,13 +3,13 @@ from nonebot.plugin import PluginMetadata, inherit_supported_adapters, require
 
 # =========== require dependency ============
 require("nonebot_plugin_alconna")
-require("nonebot-plugin-apscheduler")
+require("nonebot_plugin_apscheduler")
 
 from . import __main__ as __main__
 
 from .config import Config
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 __plugin_meta__ = PluginMetadata(
     name="AreYouSleepy",
     description="基于 sleepy-project/sleepy 项目的状态查询插件！",
