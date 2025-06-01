@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-areusleepy"
-dynamic = ["0.1.0"]
+dynamic = ["version"]
 description = "Let bot look!!!"
 authors = [
     { name = "Murasame", email = "congyu@sbhfy.cn" },
