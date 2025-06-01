@@ -1,53 +1,27 @@
-# This workflows will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
-
-# action的名称
-name: Upload Python Package
+name: Publish Python 🐍 distributions 📦 to PyPI
 
 on:
-  # 当master分支有push时，触发action
-  push: 
-    branches:
-      - master
-  
-  # 当一个pr被合并到master时，触发action
-  pull_request:
-    branches:
-      - master
-  
-  # 当发布时，触发action
-  #release:
-  #  types: [created]
-
+  release:
+    types: [published]
+  workflow_dispatch:
 
 jobs:
-  deploy:
-    name: publish python package to PYPI
-    # 此作业在 Linux 上运行
+  build-n-publish:
+    name: Use PDM to Build and publish Python 🐍 distributions 📦 to PyPI
     runs-on: ubuntu-latest
 
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+
     steps:
-    # 此步骤使用 GitHub 的 https://github.com/actions/checkout
-    - uses: actions/checkout@v2
-    
-    # 设置python环境
-    # 此步骤使用 GitHub 的 https://github.com/actions/setup-python
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    
-    # 安装依赖
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
-    
-    # 构建和发布
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        python setup.py sdist bdist_wheel
-        twine upload dist/*
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          submodules: true
+
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v3
+
+      - name: Build and Publish distribution 📦 to PyPI
+        run: pdm publish
