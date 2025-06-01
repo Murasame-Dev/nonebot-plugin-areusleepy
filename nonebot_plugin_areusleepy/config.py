@@ -6,7 +6,7 @@ class Config(BaseModel):
     # 基本配置
     sleepy_command: str = 'areusleepy'  # 触发命令
     sleepy_prompt_loading: bool = True  # 是否提示获取中
-    sleepy_show_details: bool = True  # 是否显示详细信息
+    sleepy_show_details: bool = False  # 是否显示详细信息
 
     # Sleepy 服务配置
     sleepy_url: str = 'https://sleepy-preview.wyf9.top'  # Sleepy 服务地址
