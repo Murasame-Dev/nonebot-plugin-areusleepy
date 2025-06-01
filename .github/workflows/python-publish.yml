@@ -23,5 +23,9 @@ jobs:
       - name: Setup PDM
         uses: pdm-project/setup-pdm@v3
 
-      - name: Build and Publish distribution 📦 to PyPI
-        run: pdm publish
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages-dir: dist/
