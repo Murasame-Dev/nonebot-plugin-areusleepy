@@ -100,19 +100,19 @@ env 配置示例，变量后面为默认配置:
 
 ```ini
 # 基本配置
-sleepy_command="aresleepy"    # 触发命令
+sleepy_command="areusleepy"    # 触发命令
 sleepy_prompt_loading=true # 是否在发送消息前显示 "正在获取, 请稍候"
 sleepy_show_details=false  # 是否显示详细信息 (状态的 id, 设备的 id, 最后更新时间的时区)
 
 # Sleepy 服务配置
-sleepy_url="https://status.0d000721.xin" # Sleepy 服务地址, 必须以 http:// 或 https:// 开头, 不以 / 结尾
+sleepy_url="https://status.0d000721.xin" # Sleepy 服务地址, 必须以 http:// 或 https:// 开头
 sleepy_timeout=5.0                       # 请求超时 (秒)
 sleepy_retries=3                         # 重试次数
 
 # sleepy 定时任务配置
 sleepy_scheduler_enabled=False  # 是否启用定时任务
 sleepy_scheduler_cron="0 9,21 * * *"  # Cron 表达式，默认每天 9:00 和 21:00
-sleepy_scheduler_groups:""  # 推送的群组列表，默认为空，开启定时任务后必须配置此项
+sleepy_scheduler_groups=""  # 推送的群组列表，默认为空，开启定时任务后必须配置此项
 ```
 
 ## 🎉 使用
@@ -122,7 +122,7 @@ sleepy_scheduler_groups:""  # 推送的群组列表，默认为空，开启定�
 - `/sleepy` - 查询配置中网站的在线状态
 - `/sleepy [url]` - 查询其他网站的在线状态
   * 如: `/sleepy https://sleepy.wyf9.top`
-  * **注意: `url` 必须以 `http://` 或 `https://` 开头**
+  * **注意: `url` 必须以 `http://` 或 `https://` 开头 (与配置中相同)**
 
 ### 效果图
 
@@ -132,16 +132,20 @@ sleepy_scheduler_groups:""  # 推送的群组列表，默认为空，开启定�
 
 ### Sleepy 项目
 
-QQ 群组: [点此加群](https://siiway.top/t/qq)
-Discord: [点此加入服务器](https://siiway.top/t/dc)
+QQ 群组: [点此加入](https://siiway.top/t/qq)
+
+Discord (推荐): [点此加入](https://siiway.top/t/dc)
+
 [更多联系方式](https://siiway.top/about/contact)
 
-> *人较多, 请注明来意*
+> *人较多, 建议注明来意*
 
 ### 本项目
 
-TG群组：[点此加入](https://t.me/LoveMurasame)
-QQ群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)
+TG 群组：[点此加入](https://t.me/LoveMurasame)
+
+QQ 群组：[点此加入](https://qm.qq.com/q/DfTsIDXuc8)
+
 作者邮箱：<congyu@sbhfy.cn>
 
 > *大概率没人*
@@ -154,12 +158,19 @@ QQ群：[1049319982](https://qm.qq.com/q/DfTsIDXuc8)
 
 ## 📝 更新日志
 
-### 0.1.0
+### 0.1.8
 
-重构插件
+将同步的 `requests` 替换为异步的 `httpx`, 支持并发使用
 
-
+<details>
+<summary>展开更多</summary>
 
 ### 0.1.2
 
 添加了定时任务
+
+### 0.1.0
+
+重构插件
+
+</details>
