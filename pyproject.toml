@@ -9,11 +9,7 @@ authors = [
 requires-python = ">=3.9,<4.0"
 readme = "README.md"
 license = { text = "MIT" }
-dependencies = [
-    "nonebot2[httpx]>=2.4.2",
-    "nonebot-plugin-apscheduler>=0.3.0",
-    "nonebot-plugin-alconna>=0.12.0",
-]
+dependencies = []
 
 [project.urls]
 homepage = "https://github.com/Murasame-Dev/nonebot-plugin-areusleepy"
@@ -31,3 +27,11 @@ includes = []
 [tool.pdm.version]
 source = "file"
 path = "nonebot_plugin_areusleepy/__init__.py"
+
+[tool.nonebot]
+adapters = [
+    { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
+]
+plugins = []
+plugin_dirs = ["plugins"]
+builtin_plugins = []
