@@ -4,4 +4,6 @@ pdm.lock
 .venv/
 __pycache__/
 .env.prod
+.env
+.env.dev
 /dist
