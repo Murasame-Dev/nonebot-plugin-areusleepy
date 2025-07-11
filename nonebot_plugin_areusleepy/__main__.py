@@ -3,9 +3,8 @@
 # --- 导入模块
 
 from nonebot import on_command
-from nonebot.matcher import Matcher
 from nonebot.params import CommandArg
-from nonebot.adapters import Event as BaseEvent, Message
+from nonebot.adapters import Event as Message
 from nonebot import get_plugin_config, get_bot
 from nonebot_plugin_alconna.uniseg import UniMessage
 from nonebot_plugin_apscheduler import scheduler
